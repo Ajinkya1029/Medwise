@@ -5,7 +5,7 @@ const Schema=mongoose.Schema;
 const doctorSchema=mongoose.Schema({
     name:String,
     password:String,
-    catogory:String,
+    category:String,
     roles:String,
     patient:[{
         type:Schema.Types.ObjectId,

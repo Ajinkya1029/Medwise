@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-const url="http://localhost:1000/patlist";
+const url="http://localhost:1000/doctor/patlist";
 function PatientList(){
     const [pList,setPList]=useState([]);
  async   function  getData(url){
@@ -14,7 +14,11 @@ function PatientList(){
             }
 
         }).then((res)=>res.json()).then((data)=>{
-            setPList(data.pat);
+            if(data.success){
+                console.log(data.pat);
+                setPList(data.pat);
+
+            }
          });
 }
 useEffect(()=>{
