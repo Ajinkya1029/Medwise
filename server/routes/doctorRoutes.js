@@ -23,10 +23,10 @@ function authenticate(req,res,next){
 }
 
 router.post('/addpatients',authenticate,async(req,res)=>{
-    const doc=req.user.name;
+    const doc=req.user._id;
     const {name}=req.body;
    try{
-    const doctor=await Doctor.findOne({name:doc});
+    const doctor=await Doctor.findOne({_id:doc});
     if(!doctor){
         return res.status(400).json({status:'Bad Request',success:false});
     }
@@ -48,16 +48,15 @@ res.status(500).json({status:"Bad Request",success:false});
 });
 
 router.get('/patlist',authenticate,async(req,res)=>{
-    const doc=req.user.name;
+    const doc=req.user._id;
  try{
-    const list=await Doctor.findOne({name:doc}).populate('patient');
+    const list=await Doctor.findOne({_id:doc}).populate('patient');
     
     res.status(200).json({success:true,"pat":list.patient});
  }catch(err){
     res.status(400).json({success:false,status:err});
  }
-    // const list=await Doctor.findOne({name:doc}).populate('patient');
-    // res.json({"pat":list.patient});
+    
     
  
 });
