@@ -7,6 +7,13 @@ const doctorSchema=mongoose.Schema({
     password:String,
     category:String,
     roles:String,
+    mobile:String,
+    email:String,
+    review:String,
+    hospital:[{
+        type:Schema.Types.ObjectId,
+        ref:'Hospital'
+    }],
     patient:[{
         type:Schema.Types.ObjectId,
         ref:'Patient'

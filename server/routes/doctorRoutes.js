@@ -1,7 +1,6 @@
 const express= require('express');
 const jwt=require('jsonwebtoken');
 const router=express.Router();
-
 const Doctor=require('../models/doctor_model');
 const Patient=require('../models/patient_model');
 
@@ -11,11 +10,12 @@ const secretKey="Thisissecret";
 function authenticate(req,res,next){
     const token=req.headers['authorization'];
     if(!token){
-        return res.status(401).json({success:'false',message:'Token not provided'});
+        return res.status(401).json({success:false,message:'Token not provided'});
     }
     jwt.verify(token,secretKey,(err,decoded)=>{
         if(err){
-            return res.status(403).json({success:'false',message:'Failed to authenticate'});
+            return res.status(403).json({success:false,message:'Failed to authenticate'});
+            
         }
         req.user=decoded;
         next()
@@ -56,9 +56,6 @@ router.get('/patlist',authenticate,async(req,res)=>{
  }catch(err){
     res.status(400).json({success:false,status:err});
  }
-    
-    
- 
 });
 
 module.exports=router;

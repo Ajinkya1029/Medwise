@@ -7,6 +7,14 @@ const patientSchema=mongoose.Schema({
 name:String,
 password:String,
 roles:String,
+dob:String,
+mobile:String,
+email:String,
+address:String,
+hospital:[{
+    type:Schema.Types.ObjectId,
+    ref:'Hospital'
+}],
 doctor:[{
     type:Schema.Types.ObjectId,
     ref:'Doctor'

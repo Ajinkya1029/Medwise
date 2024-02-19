@@ -22,11 +22,16 @@ function authenticate(req,res,next){
 }
 
 router.get('/doclist',authenticate,async (req,res)=>{
-    const pat=req.user.name;
-//    const list=await  Patient.findOne({name:pat}).populate('doctor');
-const list=await Doctor.find();
+    
+await Doctor.find().then(dc={
+    if(dc){
+        res.status(200).json({success:true,"List":dc});
+    }
+}).catch(err=>{
+    res.status(400).json({success:false});
+});
 
-   res.json({success:true,"List":list});
+   
        
 });
 router.post('/doclist1',authenticate,async(req,res)=>{
@@ -47,6 +52,16 @@ try{
     
     res.status(400).json({success:false,status:err});
 }
-})
+});
+
+router.post('/register', async (req, res) => {
+    const {name,password,email}=req.body;
+       const newPatient = new Patient({ name: name, password: password, roles: "patient",email:email});
+        await newPatient.save().then(pat => {
+            res.status(200).send({ status: 'ok', success: true });
+
+        });
+    
+});
 
 module.exports=router;

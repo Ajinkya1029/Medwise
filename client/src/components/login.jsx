@@ -1,20 +1,12 @@
 import React,{useState} from "react";
+import {Link } from 'react-router-dom';
+import { useNavigate } from "react-router";
+import styles from '../css/authenticate.module.css';
 function LoginHandler(){
     const [name,setName]=useState('');
     const [password,setPassword]=useState('');
     const [roles,setRoles]=useState('');
-
-    const setField=(event)=>{
-        if(event.target.name==="name"){
-            setName(event.target.value);
-            
-        }else if(event.target.name==="password"){
-            setPassword(event.target.value);
-        }else{
-            setRoles(event.target.value);
-        }
-        
-    }
+  const navigate=useNavigate();
     function submit(e){
         e.preventDefault();
         fetch('http://localhost:1000/login',{
@@ -28,18 +20,28 @@ function LoginHandler(){
                 const token=data.token;
                 localStorage.setItem('token',token);
                 console.log("Authorized and token saved"); 
+navigate('/');
             }else{
             alert("Wrong password");
             }
         })
     }
-    return <div>
-        <form >
-        <input name="name"type="text"placeholder="Name" onChange={setField}></input>
-        <input name="password"type="text"placeholder="Password" onChange={setField}></input>
-        <input name="roles"type="text"placeholder="Roles"onChange={setField}></input>
-        <button onClick={submit}></button>
-     </form>
+    return <div className={styles.register}>
+    <div className={styles.heading}><h3>Join Medwise</h3><Link style={{textDecoration:'none',color:'gray'}}>New to Medwise? </Link></div> 
+    <form className={styles.form}>
+      <div className={styles.field}>  <label>Full Name</label><input type="text" name="name" placeholder="name" onChange={(e)=>setName(e.target.value)} /></div>
+        <div className={styles.field}>
+        
+        <div className={styles.field}>
+        <label>Password</label></div>
+        <input onChange={(e)=>setPassword(e.target.value)} type="text" name="password" placeholder="password" />
     </div>
+    <div className={styles.field}>
+        <label>Roles</label>
+        <input onChange={(e)=>setRoles(e.target.value)} type="text" />
+    </div>
+    <button onClick={submit} type="submit">Submit</button>
+    </form>
+        </div>
 }
 export default LoginHandler

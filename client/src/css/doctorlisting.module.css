@@ -1,0 +1,42 @@
+.filter{
+    width: 78%;
+    margin-left: 11%;
+    padding-top: 1%;
+    display:flex;
+    justify-content: space-between;
+}
+.filter select{
+    width: 30%;
+}
+.dlist{
+    width: 80%;
+ margin-left: 10%;   
+ padding-top: 3%;
+}
+.card{
+padding: 1%;
+margin: 1%;
+
+ box-shadow: 0 0 10px gray;
+ border-radius: 1%;
+height: 20vh;
+    display: flex;
+gap: 6%;
+background-color:#9db7cc;
+}
+.imagediv{
+    width: 150px;
+    height: 150px;
+   
+    
+}
+.imagediv img{
+    border-radius: 50%;
+    width: 150px;
+    background-color: #0A83E8;
+}
+.pagecounter{
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+}

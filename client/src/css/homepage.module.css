@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+   color: white;
+  padding-left: 2%;
+  padding-right: 2%;
+    display: flex;
+    justify-content: space-between;
+    background-color: 
+    #0A83E8;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  height: 12vh;
+    align-items: center;
+}
+.leftNavbar{
+    list-style: none;
+    display: flex;
+   width: 18%;
+   gap:8%;
+}
+.searchBar{
+    width:48%;
+    height: 5vh;
+}
+.searchBar input{
+    width: 90%;
+    height: 4vh;
+}
+.searchBar button{
+    width: 8%;
+    height: 4.5vh;
+}
+.rightNavbar{
+list-style: none;
+display: flex;
+width: 20%;
+gap:10%;
+}
+.logo{
+    text-align: center;
+
+height: 50px;
+}
+.link{
+ color: white;
+    text-decoration: none;
+}
+.link:hover{
+    transition-delay: 100ms;
+    color: black;
+}
