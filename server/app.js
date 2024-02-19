@@ -5,11 +5,14 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 
 
-const Pdf = require('./models/pdf_model')
+
 const Doctor = require('./models/doctor_model');
+const Admin=require('./models/admin_model');
 const Patient = require('./models/patient_model');
 const patientRoutes = require('./routes/patientRoutes');
 const doctorRoutes = require('./routes/doctorRoutes');
+const adminRoutes=require('./routes/adminRoutes');
+const generalRoutes=require('./routes/generalRoutes');
 const app = express();
 
 
@@ -21,6 +24,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/patient', patientRoutes);
 app.use('/doctor', doctorRoutes);
+app.use('/admin',adminRoutes);
+app.use('/general',generalRoutes);
+
+
 
 
 const secretKey = "Thisissecret";
@@ -33,26 +40,7 @@ app.get('/', (req, res) => {
     res.send("hello");
 });
 
-app.post('/register', async (req, res) => {
-    const { name, password, roles } = req.body;
-    if (roles == 'doctor') {
-        const category=req.body.category;
-        const newDoctor = new Doctor({ name: name, password: password, roles: roles,category:category });
-        await newDoctor.save().then(doc => {
 
-           
-            res.status(200).send({ status: 'ok', success: true });
-        });
-
-    } else if (roles == 'patient') {
-
-        const newPatient = new Patient({ name: name, password: password, roles: roles });
-        await newPatient.save().then(pat => {
-            res.status(200).send({ status: 'ok', success: true });
-
-        });
-    }
-});
 app.post('/login', async (req, res) => {
     const { name, password, roles } = req.body;
     if (roles == 'doctor') {
@@ -86,6 +74,19 @@ app.post('/login', async (req, res) => {
                 res.status(404).json({ status: 'Bad Request', success: false });
             }
         })
+    }else if(roles=='admin'){
+         await Admin.findOne({name:name}).then(ad=>{
+            if(ad){
+                if(ad.password==password){
+                    const token=jwt.sign(ad.toObject(),secretKey,{expiresIn:'1h'});
+                    res.status(200).json({success:true,status:"Ok",token:token});
+                }else{
+                    res.status(401).json({status:"Unauthorized",success:false});
+                }
+            }else{
+                res.status(404).json({success:false,status:"Bad Request"});
+            }
+         })
     }
 });
 

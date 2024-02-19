@@ -1,0 +1,21 @@
+.tab{
+    text-align: center;
+    background-color:   #7dbff6;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.tab h3{
+    color: white;
+    /* padding-left: 10%; */
+    /* border: 1px solid black; */
+    height: 15%;
+}
+.link{
+    color: white;
+       text-decoration: none;
+   }
+   .link:hover{
+    color: black;
+    transition-delay:100ms ;
+   }

@@ -1,17 +1,23 @@
-import React from "react";
-import SignupHandler from "../components/signup";
-import LoginHandler from "../components/login";
-import PatientList from "../components/patientlist";
-import DoctorList from "../components/doctorlist";
-import AddPatient from "../components/addpatient";
+import React,{useEffect, useState} from "react";
+import Navbar from '../components/navbar.jsx';
+import {jwtDecode} from 'jwt-decode';
 
 function HomePage(){
+ const [role,setRole]=useState("");
+ const [id,setId]=useState("");
+ 
+ useEffect(()=>{
+  const token=localStorage.getItem('token');
+  if(token){
+    const decoded=jwtDecode(token);
+    setRole(decoded.roles);
+    setId(decoded.name);
+  }
+ },[]);
+
     return <div>
-         <SignupHandler/>
-<LoginHandler/> 
-<DoctorList/>
-{/* <AddPatient/> */}
-{/* <PatientList/> */}
+     <Navbar id={id}></Navbar>
+     <div>{role}</div>
     </div>
 }
 export default HomePage;

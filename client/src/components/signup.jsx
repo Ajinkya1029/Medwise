@@ -1,41 +1,43 @@
 import React, { useState } from "react";
-function SignupHandler(){
-    const [name,setName]=useState('');
-    const [password,setPassword]=useState('');
-    const [roles,setRoles]=useState('');
+import {Link } from 'react-router-dom';
+import styles from '../css/authenticate.module.css';
+function SignupHandler() {
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+  
 
-    const setField=(event)=>{
-        if(event.target.name==="name"){
-            setName(event.target.value);
-            
-        }else if(event.target.name==="password"){
-            setPassword(event.target.value);
-        }else{
-            setRoles(event.target.value);
-        }
-        
-    }
-    function submit(e){
+
+    function submit(e) {
         e.preventDefault();
-        fetch("http://localhost:1000/register",{
-            method:'POST',
-            body:JSON.stringify({name,password,roles}),
-            headers:{
-                'Content-Type':'application/json'
+        fetch("http://localhost:1000/patient/register", {
+            method: 'POST',
+            body: JSON.stringify({ name, password, email}),
+            headers: {
+                'Content-Type': 'application/json'
             }
-        }).then((res)=>res.json()).then((data)=>{
-          if(data.success){
-            console.log("User registred");
-          }
+        }).then((res) => res.json()).then((data) => {
+            if (data.success) {
+                console.log("User registred");
+            }
         })
-        }
-    return <div>
-     <form >
-        <input name="name"type="text"placeholder="Name" onChange={setField}></input>
-        <input name="password"type="text"placeholder="Password" onChange={setField}></input>
-        <input name="roles"type="text"placeholder="Roles"onChange={setField}></input>
-        <button onClick={submit}></button>
-     </form>
+    }
+    return <div className={styles.register}>
+<div className={styles.heading}><h3>Join Medwise</h3><Link style={{textDecoration:'none',color:'gray'}}>Already a patient? </Link></div> 
+<form className={styles.form}>
+  <div className={styles.field}>  <label>Full Name</label><input onChange={(e)=>setName(e.target.value)} type="text" name="name" placeholder="name" /></div>
+    <div className={styles.field}>
+    
+    <div className={styles.field}>
+    <label>Password</label></div>
+    <input onChange={(e)=>setPassword(e.target.value)} type="text" name="password" placeholder="password"/>
+</div>
+<div className={styles.field}>
+    <label>Email</label>
+    <input onChange={(e)=>setEmail(e.target.value)}type="text" name="email" placeholder="email"/>
+</div>
+<button type="submit" onClick={submit}>Submit</button>
+</form>
     </div>
 }
 export default SignupHandler;
