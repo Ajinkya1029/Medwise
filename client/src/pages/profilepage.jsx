@@ -1,17 +1,17 @@
 import React,{useState} from "react";
 import {useEffect} from 'react';
-import {useNavigate} from 'react-router';
-import {Link} from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 import Navbar from "../components/general/navbar";
-import styles from '../css/profile.module.css';
-import AssociateDoctor from "../components/patient/associatedoctor";
+import PatientDashBoard from "../components/patient/patientdashboard";
+import DoctorDashBoard from "../components/doctor/doctordashboard";
 
 function ProfilePage(){
-    const navigate=useNavigate();
+    let data;
+
 
  const [id,setId]=useState("");
  const [list,setList]=useState([]);
+ const [roles,setRoles]=useState("");
  function getData(){
     const token=localStorage.getItem('token');
     fetch('http://localhost:1000/patient/patientsdoctor',{
@@ -37,10 +37,7 @@ console.log(data.List);
 
 
 
- function HandleLogout(){
-    localStorage.removeItem('token');
-    navigate('/login');
-     }
+ 
 
  useEffect(()=>{
   const token=localStorage.getItem('token');
@@ -48,21 +45,22 @@ console.log(data.List);
     const decoded=jwtDecode(token);
    
     setId(decoded.name);
+    setRoles(decoded.roles)
   }
   getData();
  },[]);
- 
+ switch(roles){
+    case 'patient': 
+    data=<PatientDashBoard list={list}></PatientDashBoard>
+    break;
+    case 'doctor':
+        data=<DoctorDashBoard list={list}></DoctorDashBoard>
+}
     return <div>
 <Navbar id={id}></Navbar>
-<div className={styles.tab}>
-    <Link className={styles.link}>View Doctors</Link>
-    <Link className={styles.link}>View Appointments</Link>
-    <Link className={styles.link}>View Medical History</Link>
-    <Link onClick={HandleLogout} className={styles.link} >Logout</Link>
-</div>
-<div>
-    <AssociateDoctor list={list}/>
-</div>
+<div>{data}</div>
+
+
     </div>
 }
 export default ProfilePage;
