@@ -1,6 +1,6 @@
 import React from "react";
-import styles from '../css/doctorlisting.module.css';
-import pfp from '../resources/pfp.png';
+import styles from '../../css/doctorlisting.module.css';
+import pfp from '../../resources/pfp.png';
 
 function Dcard(props){
 return <div className={styles.card}>
