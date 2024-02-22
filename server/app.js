@@ -13,6 +13,7 @@ const patientRoutes = require('./routes/patientRoutes');
 const doctorRoutes = require('./routes/doctorRoutes');
 const adminRoutes=require('./routes/adminRoutes');
 const generalRoutes=require('./routes/generalRoutes');
+const pdfRoutes=require('./routes/pdfRoutes');
 const app = express();
 
 
@@ -26,6 +27,7 @@ app.use('/patient', patientRoutes);
 app.use('/doctor', doctorRoutes);
 app.use('/admin',adminRoutes);
 app.use('/general',generalRoutes);
+app.use('/pdf',pdfRoutes);
 
 
 

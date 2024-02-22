@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router';
 import styles from '../../css/profile.module.css';
 import AssociateDoctor from "./associatedoctor";
 import LoginHandler from '../general/login';
+import MedicalHistory from "./pdf";
 function PatientDashBoard(props){
     const [component,setComponent]=useState(null);
     const navigate=useNavigate();
@@ -15,8 +16,8 @@ function PatientDashBoard(props){
             console.log(e.target.name);
 if(e.target.name==="vdoctor"){
 setComponent(<AssociateDoctor list={props.list}></AssociateDoctor>)
-}else if(e.target.name==="appoint"){
-
+}else if(e.target.name==="medhistory"){
+setComponent(<MedicalHistory></MedicalHistory>)
 }
 console.log(component);
          }
