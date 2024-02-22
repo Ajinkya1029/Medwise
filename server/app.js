@@ -87,6 +87,8 @@ app.post('/login', async (req, res) => {
                 res.status(404).json({success:false,status:"Bad Request"});
             }
          })
+    }else{
+        res.status(403).json({success:false,status:"Invalid Role"});
     }
 });
 

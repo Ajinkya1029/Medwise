@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import Navbar from "../components/navbar";
-import data from '../data/Doctor';
-import Dcard from "../components/dcard";
+import Navbar from "../components/general/navbar";
+
+import Dcard from "../components/general/dcard";
 import styles from '../css/doctorlisting.module.css';
 import {jwtDecode} from 'jwt-decode';
 function DoctorListingPage(){

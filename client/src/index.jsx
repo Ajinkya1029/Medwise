@@ -5,6 +5,7 @@ import{createBrowserRouter,RouterProvider}from 'react-router-dom';
 import Authenticate from './pages/authenticatepage';
 import DoctorListingPage from './pages/doctorlistpage';
 import ProfilePage from './pages/profilepage';
+import HospitalListPage from './pages/hospitallistpage';
 
 const router=createBrowserRouter([
     {
@@ -22,6 +23,9 @@ const router=createBrowserRouter([
     {
         path:'/profile',
         element:<ProfilePage/>
+    },{
+        path:'/hospitallist',
+        element:<HospitalListPage/>
     }
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));

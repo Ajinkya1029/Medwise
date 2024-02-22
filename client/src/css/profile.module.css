@@ -19,3 +19,9 @@
     color: black;
     transition-delay:100ms ;
    }
+.associatedoctor{
+    margin-top: 5%;
+    margin-left: 15%;
+    text-align: center;
+    width: 70%;
+}

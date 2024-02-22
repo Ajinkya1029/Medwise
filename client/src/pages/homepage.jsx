@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react";
-import Navbar from '../components/navbar.jsx';
+import Navbar from "../components/general/navbar";
 import {jwtDecode} from 'jwt-decode';
 
 function HomePage(){

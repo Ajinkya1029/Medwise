@@ -1,9 +1,9 @@
 import React,{useState} from "react";
 import { useEffect } from "react";
-import Navbar from "../components/navbar";
+import Navbar from "../components/general/navbar";
 import styles from '../css/authenticate.module.css';
-import LoginHandler from "../components/login";
-import SignupHandler from "../components/signup";
+import LoginHandler from "../components/general/login";
+import SignupHandler from "../components/general/signup";
 import {jwtDecode} from 'jwt-decode';
  function Authenticate(){
    
@@ -25,7 +25,7 @@ import {jwtDecode} from 'jwt-decode';
     <h2 className={selector?`${styles.selected}`:`${styles.notselected}`} onClick={(e)=>{setSelector(true)}}>Login</h2>
     <h2 className={selector?`${styles.notselected}`:`${styles.selected}` } onClick={(e)=>{setSelector(false)}}>Register</h2> 
     </div>
-   {selector?<LoginHandler></LoginHandler>:<SignupHandler></SignupHandler>}
+   {selector?<LoginHandler value={selector} handleChange={setSelector}></LoginHandler>:<SignupHandler value={selector} handleChange={setSelector} ></SignupHandler>}
     </div>
  }
  export default Authenticate;

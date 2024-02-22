@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {Link } from 'react-router-dom';
-import styles from '../css/authenticate.module.css';
-function SignupHandler() {
+import styles from '../../css/authenticate.module.css';
+function SignupHandler({value,handleChange}) {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -23,14 +23,14 @@ function SignupHandler() {
         })
     }
     return <div className={styles.register}>
-<div className={styles.heading}><h3>Join Medwise</h3><Link style={{textDecoration:'none',color:'gray'}}>Already a patient? </Link></div> 
+<div className={styles.heading}><h3>Join Medwise</h3><Link onClick={(e)=>handleChange(true)} style={{textDecoration:'none',color:'gray'}}>Already a patient? </Link></div> 
 <form className={styles.form}>
   <div className={styles.field}>  <label>Full Name</label><input onChange={(e)=>setName(e.target.value)} type="text" name="name" placeholder="name" /></div>
     <div className={styles.field}>
     
     <div className={styles.field}>
     <label>Password</label></div>
-    <input onChange={(e)=>setPassword(e.target.value)} type="text" name="password" placeholder="password"/>
+    <input onChange={(e)=>setPassword(e.target.value)} type="password" name="password" placeholder="password"/>
 </div>
 <div className={styles.field}>
     <label>Email</label>

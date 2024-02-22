@@ -21,38 +21,19 @@ function authenticate(req,res,next){
     });
 }
 
-router.get('/doclist',authenticate,async (req,res)=>{
-    
-await Doctor.find().then(dc={
-    if(dc){
-        res.status(200).json({success:true,"List":dc});
-    }
-}).catch(err=>{
-    res.status(400).json({success:false});
+router.get('/patientsdoctor',authenticate,async (req,res)=>{
+    const name=req.user.name;
+   try{
+    const list=await Patient.findOne({name:name}).populate('doctor');
+    res.status(200).json({success:true,"List":list.doctor});
+   }catch(err){
+    res.status(400).json({success:true});
+   }
 });
-
    
        
-});
-router.post('/doclist1',authenticate,async(req,res)=>{
-    const {filter}=req.body;
-try{
-    await Doctor.find({category:filter}).then(dList=>{
-        if(!dList){
-            res.status(404).json({success:false,status:"Bad Request"});
-        }
-        const filterList=dList.map(item=>item.toJSON());
-        res.status(200).json({success:true,"List":filterList});
-    }).catch(err=>{
-        res.status(400).json({success:false,status:"Bad Request"});
-    });
 
-    
-}catch(err){
-    
-    res.status(400).json({success:false,status:err});
-}
-});
+
 
 router.post('/register', async (req, res) => {
     const {name,password,email}=req.body;
