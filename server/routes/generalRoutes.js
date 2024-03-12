@@ -69,7 +69,16 @@ router.post('/filterhlist',async (req,res)=>{
 })
 
 
-
+router.post('/hoscity',async (req,res)=>{
+const city=req.body.id;
+await Hospital.find({city:city}).then(hp=>{
+    if(hp){
+        res.status(200).json({success:true,"List":hp});
+    }
+}).catch(err=>{
+    res.status(400).json({success:false});
+})
+});
 
 
 

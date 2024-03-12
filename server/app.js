@@ -13,6 +13,7 @@ const patientRoutes = require('./routes/patientRoutes');
 const doctorRoutes = require('./routes/doctorRoutes');
 const adminRoutes=require('./routes/adminRoutes');
 const generalRoutes=require('./routes/generalRoutes');
+const pdfRoutes=require('./routes/pdfRoutes');
 const app = express();
 
 
@@ -26,6 +27,8 @@ app.use('/patient', patientRoutes);
 app.use('/doctor', doctorRoutes);
 app.use('/admin',adminRoutes);
 app.use('/general',generalRoutes);
+app.use('/pdf',pdfRoutes);
+app.use('/upload',express.static("upload"));
 
 
 
@@ -47,6 +50,7 @@ app.post('/login', async (req, res) => {
         await Doctor.findOne({ name: name }).then(doc => {
             if (doc) {
                 if (doc.password == password) {
+                    
                     const token = jwt.sign(doc.toObject(), secretKey, { expiresIn: '1h' });
                     res.status(200).json({ status: 'Ok', success: true, token: token });
 

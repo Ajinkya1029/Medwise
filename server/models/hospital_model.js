@@ -6,6 +6,7 @@ const hospitalSchema=mongoose.Schema({
     name:String,
     address:String,
     mobile:String,
+    city:String,
     doctor:[{
         type:Schema.ObjectId,
         ref:'Doctor'

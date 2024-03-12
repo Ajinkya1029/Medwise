@@ -1,3 +1,10 @@
+.bdy{
+  height: 100vh;
+  overflow: scroll;
+  background-image: url('../resources/background.jpeg');
+  background-size: 1550px ;
+  background-repeat:repeat;
+}
 .select{
   color: #0A83E8;
     width: 20%;
@@ -13,7 +20,8 @@
     border-bottom: 1px solid gray;
 }
 .register{
-  box-shadow: 0 0 2px gray;
+  background-color: aliceblue;
+  box-shadow: 0 0 10px gray;
   width: 28%;
   /* border-radius: 3%; */
   height: 60vh;

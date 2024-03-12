@@ -24,12 +24,12 @@ const router=createBrowserRouter([
         path:'/profile',
         element:<ProfilePage/>
     },{
-        path:'/hospitallist',
+        path:'/hospitallist/:id',
         element:<HospitalListPage/>
     }
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<RouterProvider router={router}></RouterProvider>
+root.render(<RouterProvider  router={router}></RouterProvider>
 );
 
 

@@ -5,6 +5,7 @@ const Schema=mongoose.Schema;
 const adminScheme=mongoose.Schema({
     name:String,
     password:String,
+    roles:String,
     hospital:{
         type:Schema.Types.ObjectId,
         ref:'Hospital'

@@ -29,7 +29,7 @@ useEffect(()=>{
     <div key={item._id}>
         <h4>{item.name}</h4>
         <h4>{item.password}</h4>
-        </div>
+    </div>
 ))}
     </div>
 }

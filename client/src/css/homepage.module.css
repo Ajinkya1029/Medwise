@@ -2,6 +2,13 @@
     margin: 0;
     padding: 0;
 }
+.bdy{
+    height: 100vh;
+    overflow: scroll;
+    background-image: url('../resources/background.jpeg');
+    background-size: 1550px ;
+    background-repeat:repeat;
+}
 .navbar{
    color: white;
   padding-left: 2%;

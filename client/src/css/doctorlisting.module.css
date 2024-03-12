@@ -1,3 +1,10 @@
+.bdy{
+    height: 100vh;
+    overflow: scroll;
+    background-image: url('../resources/background.jpeg');
+    background-size: 1550px ;
+    background-repeat:repeat;
+}
 .filter{
     width: 78%;
     margin-left: 11%;
