@@ -1,3 +1,10 @@
+.bdy{
+    height: 100vh;
+    overflow: scroll;
+    background-image: url('../resources/background.jpeg');
+    background-size: 1550px ;
+    background-repeat:repeat;
+  }
 .tab{
     text-align: center;
     background-color:   #7dbff6;
@@ -25,3 +32,51 @@
     text-align: center;
     width: 70%;
 }
+.medicalhistory{
+    /* text-align: center; */
+    
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2%;
+}
+.medicalhistory h1{
+    color: gray;
+}
+.grid{
+    padding-top: 5%;
+    display: grid;
+    grid-template-columns: repeat(5, 0.3fr);
+    grid-gap: 10px;
+}
+.pdfcard{
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+    width: 200px;
+    height: 200px;
+    background-color:   #7dbff6;
+    margin: 1%;
+    color: white;
+    text-align:center;
+
+}
+.addpatient{
+    text-align: center;
+    height: 50vh;
+    background-color: #7dbff6;
+    margin-top: 5%;
+    width: 50%;
+    margin-left: 25%;
+    display: flex;
+    flex-direction: column;
+
+}
+.addpatient h1{
+    color: white;
+}
+.addpatient input{
+    width: 40%;
+}
+

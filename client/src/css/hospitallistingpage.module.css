@@ -1,0 +1,31 @@
+.bdy{
+    height: 100vh;
+    overflow: scroll;
+    background-image: url('../resources/background.jpeg');
+    background-size: 1550px ;
+    background-repeat:repeat;
+}
+.hospitallist{
+    width: 78%;
+    margin-left: 11%;
+    margin-top: 1%;
+}
+.search{
+    display: flex;
+    justify-content: space-between;
+}
+.search form{
+    width: 30%;
+    height: 25%;
+    display: flex;
+}
+.search input{
+    width: 100%;
+}
+.hlist{
+margin-top: 3%;
+        width: 100%;
+        
+     padding-top: 1%;
+    
+}  

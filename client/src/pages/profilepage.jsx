@@ -4,6 +4,8 @@ import {jwtDecode} from 'jwt-decode';
 import Navbar from "../components/general/navbar";
 import PatientDashBoard from "../components/patient/patientdashboard";
 import DoctorDashBoard from "../components/doctor/doctordashboard";
+import AdminDashBoard from "../components/admin/admindashboard";
+import styles from '../css/profile.module.css';
 
 function ProfilePage(){
     let data;
@@ -12,33 +14,6 @@ function ProfilePage(){
  const [id,setId]=useState("");
  const [list,setList]=useState([]);
  const [roles,setRoles]=useState("");
- function getData(){
-    const token=localStorage.getItem('token');
-    fetch('http://localhost:1000/patient/patientsdoctor',{
-        method:"GET",
-        headers:{
-            'Authorization':`${token}`,
-            'Content-Type':'application/json',
-            Accept:'application/json'
-        }
-    }).then((res)=>res.json()).then((data)=>{
-        if(data.success){
-setList(data.List);
-console.log(data.List);
-        }else{
-            console.log("Failed to fetch");
-        }
-    }).catch(err=>{
-        console.log(err);
-    })
- }
-
-
-
-
-
- 
-
  useEffect(()=>{
   const token=localStorage.getItem('token');
   if(token){
@@ -46,17 +21,21 @@ console.log(data.List);
    
     setId(decoded.name);
     setRoles(decoded.roles)
+    console.log(roles)
   }
-  getData();
+ 
  },[]);
  switch(roles){
     case 'patient': 
-    data=<PatientDashBoard list={list}></PatientDashBoard>
+    data=<PatientDashBoard></PatientDashBoard>
     break;
     case 'doctor':
-        data=<DoctorDashBoard list={list}></DoctorDashBoard>
+        data=<DoctorDashBoard ></DoctorDashBoard>
+        break;
+    case 'admin':
+        data=<AdminDashBoard></AdminDashBoard>
 }
-    return <div>
+    return <div className={styles.bdy}>
 <Navbar id={id}></Navbar>
 <div>{data}</div>
 

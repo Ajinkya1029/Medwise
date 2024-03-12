@@ -2,6 +2,7 @@ const express =require ('express');
 const multer =require('multer');
 const Pdf=require('../models/pdf_model');
 const jwt=require('jsonwebtoken');
+const Patient=require('../models/patient_model');
 const fs=require('fs');
 const router=express.Router();
 
@@ -9,7 +10,7 @@ const secretKey="Thisissecret";
 
 const storage=multer.diskStorage({
     destination:function(req,file,cb){
-        cb(null,"upload/");
+        cb(null,"./upload");
     },
     filename:function(req,file,cb){
         cb(null,file.originalname);
@@ -31,17 +32,33 @@ function authenticate(req,res,next){
         next()
     });
 }
-router.post('/upload',upload.single('pdf'),async(req,res)=>{
-    try{
-       const{originalname,buffer}=req.file;
+router.post('/upload',authenticate,upload.single('pdf'),async(req,res)=>{
+    const name=req.user.name;
+    
+    await Patient.findOne({name:name}).then(pt=>{
+        const{originalname,buffer}=req.file;
+        console.log(req.file);
         const pdf=new Pdf({
             name:originalname,
             data:buffer
         });
-        await pdf.save();
-        res.status(200).json({success:true,status:"Pdf Saved"});
+        pt.pdf.push(pdf);
+        Promise.all([pdf.save(),pt.save()]);
+         res.status(200).json({success:true,status:"Pdf Saved"});
+    }).catch(err=>{
+        res.status(400).json({success:false,status:"Failed to save"});
+    });
+    });
+
+    router.get('/pdfget',authenticate,async(req,res)=>{
+    
+        const name=req.user.name;
+    try{
+        await Patient.findOne({name:name}).populate('pdf').then(pd=>{
+            res.status(200).json({success:true,"List":pd.pdf});
+        })
     }catch(err){
-res.status(400).json({success:false,status:`${err}`});
+        res.status(400).json({success:false});
     }
-})
+    });
 module.exports=router;

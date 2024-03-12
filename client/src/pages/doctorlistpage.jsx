@@ -56,7 +56,7 @@ let totalPages=Math.ceil(dat.length/4);
 const indexOfLastItem=currentPage*4;
 const indexOfFirstItem=indexOfLastItem-4;
 let currentItem=dat.slice(indexOfFirstItem,indexOfLastItem);
-return <div>
+return <div className={styles.bdy}>
 <Navbar id={id}></Navbar>
 <div className={styles.filter}><h2>Filter according to category</h2>
 <select  onChange={(e)=>{setCategory(e.target.value)}}>

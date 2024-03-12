@@ -18,7 +18,7 @@ import {jwtDecode} from 'jwt-decode';
   }
  },[]);
     const [selector,setSelector]=useState(true);
-    return <div> 
+    return <div className={styles.bdy}> 
         <Navbar id={id}></Navbar>
         
    <div className={styles.select}>

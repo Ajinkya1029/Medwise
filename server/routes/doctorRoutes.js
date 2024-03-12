@@ -52,7 +52,7 @@ router.get('/patlist',authenticate,async(req,res)=>{
  try{
     const list=await Doctor.findOne({_id:doc}).populate('patient');
     
-    res.status(200).json({success:true,"pat":list.patient});
+    res.status(200).json({success:true,"List":list.patient});
  }catch(err){
     res.status(400).json({success:false,status:err});
  }
