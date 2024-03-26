@@ -26,7 +26,7 @@ router.get('/hpat',authenticate,async(req,res)=>{
  res.send("hello");
 
 });
-router.post('/admin')
+
 router.post('/register',authenticate,async(req,res)=>{
     const {name,password,email,category}=req.body;
     const newDoctor=new Doctor({name:name,password:password,email:email,category:category,roles:"doctor"});
@@ -34,6 +34,22 @@ router.post('/register',authenticate,async(req,res)=>{
         res.status(200).json({success:true,status:"Doctor Registered"});
     }).catch(err=>{
         res.status(400).json({success:false,status:"Doctor not registered"});
+    })
+})
+router.delete('/patient/:pId',authenticate,async(req,res)=>{
+    const userId=req.params.pId;
+    await Patient.deleteOne({name:userId}).then(pt=>{
+        res.status(200).json({success:true,status:"Patient Deleted"})
+    }).catch(err=>{
+        res.status(400).json({success:false,status:"Patient not Deleted"})
+    })
+})
+router.delete('/doctor/:pId',authenticate,async(req,res)=>{
+    const userId=req.params.pId;
+    await Doctor.deleteOne({name:userId}).then(pt=>{
+        res.status(200).json({success:true,status:"Doctor Deleted"})
+    }).catch(err=>{
+        res.status(400).json({success:false,status:"Doctor not Deleted"})
     })
 })
 module.exports=router;

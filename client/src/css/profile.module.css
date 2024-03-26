@@ -79,4 +79,10 @@
 .addpatient input{
     width: 40%;
 }
+.admindashboard{
+    width: 18%;
+    background-color:   #7dbff6;
+    height:85.8vh;
+    color: white;
+}
 

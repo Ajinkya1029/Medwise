@@ -10,6 +10,8 @@
     background-repeat:repeat;
 }
 .navbar{
+    position: sticky;
+    top: 0;
    color: white;
   padding-left: 2%;
   padding-right: 2%;

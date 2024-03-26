@@ -5,12 +5,14 @@ import styles from '../../css/profile.module.css';
 
 function AdminDashBoard(){
    
-    return  <div className={styles.tab}>
-    <Link name="vdoctor">View Doctors</Link>
-    <Link name="appoint" >View Appointments</Link>
-    <Link name="medhistory" >View Medical History</Link>
-    <Link  >Logout</Link>
-</div>
+    return <div className={styles.admindashboard}>
+    <h5>Add Doctor</h5>
+    <h5>Add Medical record</h5>
+    <h5>Update Prescription</h5>
+   <h5>Update Appointment</h5>
+   <h5>Update Patient</h5>
+   
+    </div>
 
 
 }
