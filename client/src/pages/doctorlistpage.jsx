@@ -52,9 +52,9 @@ fetch('http://localhost:1000/general/filterdoclist',{
 })
 
 }
-let totalPages=Math.ceil(dat.length/4);
-const indexOfLastItem=currentPage*4;
-const indexOfFirstItem=indexOfLastItem-4;
+let totalPages=Math.ceil(dat.length/5);
+const indexOfLastItem=currentPage*5;
+const indexOfFirstItem=indexOfLastItem-5;
 let currentItem=dat.slice(indexOfFirstItem,indexOfLastItem);
 return <div className={styles.bdy}>
 <Navbar id={id}></Navbar>
