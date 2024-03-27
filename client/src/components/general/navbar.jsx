@@ -18,7 +18,7 @@ if(data){
 
 <Link className={styles.link} to="/"><img src={medwise} className={styles.logo} alt="Hello" ></img></Link>
 <ul className={styles.leftNavbar}>
-<Link to="/doctorlist" className={styles.link}>Find Doctors</Link>
+<Link to="/doctorlist" className={styles.link}>Find Doctor</Link>
 <Link to='/hospitallist/id:' className={styles.link}>Find Hospital</Link>
 <li></li>
 </ul>
