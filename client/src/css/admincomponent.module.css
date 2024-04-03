@@ -1,0 +1,30 @@
+.adddoctor{
+    /* margin: ; */
+    color: gray;
+margin-left: 30%;
+background-color: aliceblue;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30%;
+    margin-top: 5%;
+    width: 50%;
+
+    height: 50%;
+    box-shadow: 0 0 0 1px grey;
+}
+.adddoctorform{
+margin-top: 2%;
+margin-left:25% ;
+
+}
+.adddoctorform input{
+    width: 50%;
+    display: block;
+margin-top: 5%;
+    justify-content: center;
+    
+}
+.adddoctorform button{
+    margin-top: 5%;
+    width: 50%;
+}

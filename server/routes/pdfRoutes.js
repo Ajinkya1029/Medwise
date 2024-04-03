@@ -33,7 +33,7 @@ function authenticate(req,res,next){
     });
 }
 router.post('/upload',authenticate,upload.single('pdf'),async(req,res)=>{
-    const name=req.user.name;
+  const name=req.body.name;
     
     await Patient.findOne({name:name}).then(pt=>{
         const{originalname,buffer}=req.file;

@@ -1,7 +1,7 @@
 .bdy{
     height: 100vh;
     overflow: scroll;
-    background-image: url('../resources/background.jpeg');
+    background-image: url('../resources/background1.png');
     background-size: 1550px ;
     background-repeat:repeat;
   }
@@ -92,6 +92,12 @@
     flex-direction: column;
 gap: 10%;
      background-color:   #7dbff6;
+  
+    
     width: 18%;
+}
+.feature{
+    border: 1px solid black;
+    width: 82%;
 }
 
