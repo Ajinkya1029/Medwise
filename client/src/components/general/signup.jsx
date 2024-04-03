@@ -20,6 +20,7 @@ function SignupHandler({value,handleChange}) {
             if (data.success) {
                 console.log("User registred");
             }
+            alert(data['uuid'])
         })
     }
     return <div className={styles.register}>

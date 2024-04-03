@@ -1,10 +1,11 @@
-import React,{useEffect, useState} from "react";
+import React,{ useState} from "react";
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router';
 import styles from '../../css/profile.module.css';
-import AssociatedPatient from "../doctor/associatedpatient";
-import DoctorListingPage from "../../pages/doctorlistpage";
 import AddDoctor from "./adddoctor";
+import UploadMedicalHistory from "./uploadmedicalhistory";
+import UploadPrescription from "./uploadprescription";
+import UploadPatient from "./uploadpatient";
 
 function AdminDashBoard(){
 const navigate=useNavigate()
@@ -13,13 +14,13 @@ const navigate=useNavigate()
 if(event.target.name==="adddoctor"){
     setComponent(<AddDoctor></AddDoctor>);
 }else if(event.target.name==="addmedical"){
-    setComponent();
+    setComponent(<UploadMedicalHistory></UploadMedicalHistory>);
 }else if(event.target.name==="updatepres"){
-    setComponent();
+    setComponent(<UploadPrescription></UploadPrescription>);
 }else if(event.target.name==="updateadd"){
     setComponent();
 }else{
-    setComponent();
+    setComponent(<UploadPatient></UploadPatient>);
 }
 console.log(event.target.name)
    }

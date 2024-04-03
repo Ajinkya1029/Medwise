@@ -6,6 +6,15 @@ import medwise from '../../resources/logo-color.png';
 function Navbar(props){
     const [data,setData]=useState('');
     const navigate=useNavigate();
+    function keyPress(e){
+   
+        if(e.key==='Enter'){
+            if(data){
+
+                navigate(`/hospitallist/${data.toLowerCase()}`);
+            }
+        }
+    }
    function search(e){
 e.preventDefault();
 if(data){
@@ -13,7 +22,7 @@ if(data){
     navigate(`/hospitallist/${data}`);
 }
    }
-    return <div className={styles.navbar}>
+    return <div className={styles.navbar} onKeyDown={keyPress} >
 
 
 <Link className={styles.link} to="/"><img src={medwise} className={styles.logo} alt="Hello" ></img></Link>

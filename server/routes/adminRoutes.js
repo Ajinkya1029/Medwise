@@ -22,14 +22,19 @@ function authenticate(req,res,next){
    });
 }
 
+
+
+
 router.get('/hpat',authenticate,async(req,res)=>{
  res.send("hello");
 
 });
 
 router.post('/register',authenticate,async(req,res)=>{
-    const {name,password,email,category}=req.body;
-    const newDoctor=new Doctor({name:name,password:password,email:email,category:category,roles:"doctor"});
+    // According to admin hospital add the doctor hospital 
+    const {name,password,category}=req.body;
+    
+    const newDoctor=new Doctor({name:name,password:password,category:category,roles:"doctor"});
     newDoctor.save().then(dc=>{
         res.status(200).json({success:true,status:"Doctor Registered"});
     }).catch(err=>{
@@ -38,7 +43,9 @@ router.post('/register',authenticate,async(req,res)=>{
 })
 router.delete('/patient/:pId',authenticate,async(req,res)=>{
     const userId=req.params.pId;
+    
     await Patient.deleteOne({name:userId}).then(pt=>{
+        
         res.status(200).json({success:true,status:"Patient Deleted"})
     }).catch(err=>{
         res.status(400).json({success:false,status:"Patient not Deleted"})

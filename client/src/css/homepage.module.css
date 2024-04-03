@@ -5,7 +5,7 @@
 .bdy{
     height: 100vh;
     overflow: scroll;
-    background-image: url('../resources/background.jpeg');
+    background-image: url('../resources/background1.png');
     background-size: 1550px ;
     background-repeat:repeat;
 }
@@ -22,6 +22,7 @@
     box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   height: 12vh;
     align-items: center;
+    font-size: 100%;
 }
 .leftNavbar{
     list-style: none;
@@ -60,3 +61,57 @@ height: 50px;
     transition-delay: 100ms;
     color: black;
 }
+@media screen and (max-width:1100px){
+   .searchBar button{
+    font-size: 10px;
+   }
+}
+@media screen and (max-width:900px){
+    .searchBar button{
+     font-size: 7px;
+    }
+    .leftNavbar{
+        font-size: 12px;
+    }
+    .rightNavbar{
+        font-size: 12px;
+    }
+ }
+ @media screen and (max-width:650px){
+    .searchBar{
+        width: 60%;
+    }
+    .searchBar button{
+     font-size: 7px;
+     width: 10%;
+     
+     
+    }
+    .searchBar input{
+        width: 75%;
+    }
+    .leftNavbar{
+        width: 15%;
+    }
+    .rightNavbar{
+        width: 0;
+        display: none;
+        font-size: 12px;
+    }
+ }
+ @media screen and (max-width:480px){
+    .searchBar{
+        width: 70%;
+    }
+    .searchBar button{
+     font-size: 6px;
+     width: 9%;
+     
+     
+    }
+    .leftNavbar{
+        width: 0%;
+        display: none;
+    }
+    
+ }

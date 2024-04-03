@@ -39,7 +39,7 @@ router.post('/register', async (req, res) => {
     const {name,password,email}=req.body;
        const newPatient = new Patient({ name: name, password: password, roles: "patient",email:email});
         await newPatient.save().then(pat => {
-            res.status(200).send({ status: 'ok', success: true });
+            res.status(200).send({ status: 'ok', success: true ,'uuid':pat._id});
 
         });
     
