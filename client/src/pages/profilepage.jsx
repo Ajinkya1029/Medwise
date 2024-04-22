@@ -22,6 +22,7 @@ function ProfilePage(){
 
     setId(decoded.name);
     setRoles(decoded.roles)
+    setUuid(decoded._id);
     
    
   }

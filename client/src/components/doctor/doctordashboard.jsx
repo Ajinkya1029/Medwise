@@ -50,6 +50,7 @@ function DoctorDashBoard(props){
 <Link className={styles.link} onClick={HandleLogout}>Logout</Link>
     </div>
    <div>{component}</div> 
+   <div className={styles.uniqueid}>{props.uuid}</div>
    </>
 }
 export default DoctorDashBoard;

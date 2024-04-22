@@ -7,6 +7,8 @@ function UploadMedicalHistory(){
         const token=localStorage.getItem('token');
             const formData=new FormData();
             formData.append('pdf',selectedFile);
+            formData.append('name',name);
+
             
         fetch('http://localhost:1000/pdf/upload',{
             method:"POST",
@@ -17,7 +19,7 @@ function UploadMedicalHistory(){
             
         }).then((res)=>res.json()).then(data=>{
             if(data.success){
-                console.log(data.status);
+               alert(data.status);
             }
         }).catch(err=>{
             console.log(err);

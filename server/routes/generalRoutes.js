@@ -71,6 +71,7 @@ router.post('/filterhlist',async (req,res)=>{
 
 router.post('/hoscity',async (req,res)=>{
 const city=req.body.id;
+console.log(city)
 await Hospital.find({city:city}).then(hp=>{
     if(hp){
         res.status(200).json({success:true,"List":hp});

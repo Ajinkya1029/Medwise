@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 app.post('/login', async (req, res) => {
     const { name, password, roles } = req.body;
     if (roles == 'doctor') {
-        await Doctor.findOne({ _id: name }).then(doc => {
+        await Doctor.findOne({ email: name }).then(doc => {
             if (doc) {
                 if (doc.password == password) {
                     
@@ -64,7 +64,7 @@ app.post('/login', async (req, res) => {
             }
         })
     } else if (roles == 'patient') {
-        await Patient.findOne({ _id: name }).then(pat => {
+        await Patient.findOne({ email: name }).then(pat => {
             if (pat) {
                 if (pat.password == password) {
                     const token = jwt.sign(pat.toObject(), secretKey, { expiresIn: '1h' });

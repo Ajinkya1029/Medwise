@@ -53,12 +53,14 @@ setComponent(<MedicalHistory></MedicalHistory>)
          },[]);
     return <> 
     <div className={styles.tab}>
+        
     <Link name="vdoctor" onClick={render} className={styles.link}>View Doctors</Link>
     <Link name="appoint" onClick={render} className={styles.link}>View Appointments</Link>
     <Link name="medhistory" onClick={render} className={styles.link}>View Medical History</Link>
     <Link onClick={HandleLogout} className={styles.link} >Logout</Link>
 </div>
 <div>{component}</div>
+<div className={styles.uniqueid}>{props.uuid}</div>
 </>
 }
 export default PatientDashBoard;

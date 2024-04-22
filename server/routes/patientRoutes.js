@@ -37,11 +37,18 @@ router.get('/patientsdoctor',authenticate,async (req,res)=>{
 
 router.post('/register', async (req, res) => {
     const {name,password,email}=req.body;
-       const newPatient = new Patient({ name: name, password: password, roles: "patient",email:email});
-        await newPatient.save().then(pat => {
-            res.status(200).send({ status: 'ok', success: true ,'uuid':pat._id});
-
-        });
+    await Patient.findOne({email:name}).then(pt=>{
+        if(pt){
+            res.status(400).json({success:false,status:'Already Registered'})
+        }else{
+            const newPatient = new Patient({ name: name, password: password, roles: "patient",email:email});
+            newPatient.save().then(pat => {
+                res.status(200).send({ status: 'ok', success: true ,'uuid':pat._id});
+    
+            });
+        }
+    })
+      
     
 });
 

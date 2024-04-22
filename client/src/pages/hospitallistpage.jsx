@@ -9,12 +9,12 @@ import styles from '../css/hospitallistingpage.module.css';
 function HospitalListPage(){
     const [name,setName]=useState("");
     const[search,setSearch]=useState("");
-    const {id}=useParams();
+    let {id}=useParams();
     
 const [hospitalList,setHospitalList]=useState([]);
 
 function getSearchData(event){
-   
+id=id.toLowerCase()
     fetch("http://localhost:1000/general/hoscity",{
         method:"POST",
         headers:{

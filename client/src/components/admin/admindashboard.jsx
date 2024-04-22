@@ -6,6 +6,7 @@ import AddDoctor from "./adddoctor";
 import UploadMedicalHistory from "./uploadmedicalhistory";
 import UploadPrescription from "./uploadprescription";
 import UploadPatient from "./uploadpatient";
+import PatientList from "./patientlist";
 
 function AdminDashBoard(){
 const navigate=useNavigate()
@@ -19,7 +20,10 @@ if(event.target.name==="adddoctor"){
     setComponent(<UploadPrescription></UploadPrescription>);
 }else if(event.target.name==="updateadd"){
     setComponent();
-}else{
+}else if(event.target.name==="patlist"){
+    setComponent(PatientList);
+}
+else{
     setComponent(<UploadPatient></UploadPatient>);
 }
 console.log(event.target.name)
@@ -35,6 +39,7 @@ console.log(event.target.name)
     <Link name="updatepres" className={styles.link}onClick={handler}>Update Prescription</Link>
    <Link name="updateapp" className={styles.link} onClick={handler}>Update Appointment</Link>
    <Link name="updatepat" className={styles.link} onClick={handler}>Update Patient</Link>
+   <Link name="patlist" className={styles.link} onClick={handler}>Patient List</Link>
    <Link onClick={HandleLogout} className={styles.link} >Logout</Link>
    </div>
    <div className={styles.feature}>
