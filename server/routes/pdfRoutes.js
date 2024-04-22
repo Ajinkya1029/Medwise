@@ -34,10 +34,11 @@ function authenticate(req,res,next){
 }
 router.post('/upload',authenticate,upload.single('pdf'),async(req,res)=>{
   const name=req.body.name;
-    
-    await Patient.findOne({name:name}).then(pt=>{
+  console.log(name);
+  
+    await Patient.findOne({email:name}).then(pt=>{
         const{originalname,buffer}=req.file;
-        console.log(req.file);
+        // console.log(req.file);
         const pdf=new Pdf({
             name:originalname,
             data:buffer

@@ -20,4 +20,4 @@ const hospitalSchema=mongoose.Schema({
         ref:'Admin'
     }
 });
-module.exports=mongoose.model('hospital',hospitalSchema);
+module.exports=mongoose.model('Hospital',hospitalSchema);

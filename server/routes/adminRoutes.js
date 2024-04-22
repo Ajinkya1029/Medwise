@@ -3,6 +3,8 @@ const jwt=require('jsonwebtoken');
 const Patient=require('../models/patient_model');
 const Doctor=require('../models/doctor_model');
 const Admin =require('../models/admin_model');
+const Hospital =require("../models/hospital_model");
+const { stat } = require('fs/promises');
 
 const router=express.Router();
 
@@ -24,7 +26,28 @@ function authenticate(req,res,next){
 
 
 
+router.post('/hospitalregister',authenticate,async(req,res)=>{
+    const {hospital}=req.body;
+    const name=req.user.name;
+    console.log(hospital)
+    try{
+const adn=await Admin.findOne({name:name})
 
+    const hpt=await Hospital.findOne({name:hospital});
+
+    adn.hospital=hpt._id;
+    hpt.admin=adn._id;
+   
+    await Promise.all([hpt.save(),adn.save()]);
+    return res.status(200).json({success:true,status:"Saved"})
+
+    
+}catch(err){
+    res.status(400).json({success:false,status:err})
+
+}
+
+})
 router.get('/hpat',authenticate,async(req,res)=>{
  res.send("hello");
 
@@ -43,6 +66,7 @@ router.post('/register',authenticate,async(req,res)=>{
 })
 router.delete('/patient/:pId',authenticate,async(req,res)=>{
     const userId=req.params.pId;
+    const hospital=req.user.hospital;
     
     await Patient.deleteOne({name:userId}).then(pt=>{
         
@@ -51,12 +75,25 @@ router.delete('/patient/:pId',authenticate,async(req,res)=>{
         res.status(400).json({success:false,status:"Patient not Deleted"})
     })
 })
-router.delete('/doctor/:pId',authenticate,async(req,res)=>{
-    const userId=req.params.pId;
+router.delete('/doctor/:dId',authenticate,async(req,res)=>{
+    const userId=req.params.dId;
+    const hospital=req.user.hospital;
     await Doctor.deleteOne({name:userId}).then(pt=>{
         res.status(200).json({success:true,status:"Doctor Deleted"})
     }).catch(err=>{
         res.status(400).json({success:false,status:"Doctor not Deleted"})
+    })
+})
+router.get('/patientlist',authenticate,async(req,res)=>{
+    const hospital=req.user.hospital;
+    await Patient.find({hospital:hospital}).then(pt=>{
+        if(!pt){
+            res.status(200).json({success:true,status:"No Patient Found"});
+        }else{
+            res.status(200).json({success:true,status:"OK","list":pt});
+        }
+    }).catch(err=>{
+        res.status(400).json({success:false,status:err});
     })
 })
 module.exports=router;

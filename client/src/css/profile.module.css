@@ -101,3 +101,7 @@ gap: 10%;
     width: 82%;
 }
 
+.uniqueid{
+    position: absolute;
+    bottom: 2%;
+}
