@@ -86,7 +86,7 @@ router.delete('/doctor/:dId',authenticate,async(req,res)=>{
 })
 router.get('/patientlist',authenticate,async(req,res)=>{
     const hospital=req.user.hospital;
-    await Patient.find({hospital:hospital}).then(pt=>{
+    await Patient.find({hospital:hospital}).populate('doctor').then(pt=>{
         if(!pt){
             res.status(200).json({success:true,status:"No Patient Found"});
         }else{
