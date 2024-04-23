@@ -5,9 +5,11 @@ import styles from '../../css/profile.module.css';
 import AssociateDoctor from "./associatedoctor";
 import LoginHandler from '../general/login';
 import MedicalHistory from "./medicalhistory";
+import UpdatePatient from "./updatepatdata";
 function PatientDashBoard(props){
     const [component,setComponent]=useState(null);
     const [list,setList]=useState([]);
+    const [patData,setPatData]=useState([]);
     const navigate=useNavigate();
     function getData(){
         const token=localStorage.getItem('token');
@@ -20,8 +22,11 @@ function PatientDashBoard(props){
             }
         }).then((res)=>res.json()).then((data)=>{
             if(data.success){
-                console.log(data.List);
+                
     setList(data.List);
+    setPatData(data.pat)
+    console.log(data.pat);
+    
             }else{
                 console.log("Failed to fetch");
             }
@@ -45,9 +50,10 @@ if(e.target.name==="vdoctor"){
     }
 }else if(e.target.name==="medhistory"){
 setComponent(<MedicalHistory></MedicalHistory>)
-}
+}else if(e.target.name==="appoint"){
+    setComponent(<UpdatePatient list={patData} />)
+}}
 
-         }
          useEffect(()=>{
             getData();
          },[]);
@@ -55,7 +61,7 @@ setComponent(<MedicalHistory></MedicalHistory>)
     <div className={styles.tab}>
         
     <Link name="vdoctor" onClick={render} className={styles.link}>View Doctors</Link>
-    <Link name="appoint" onClick={render} className={styles.link}>View Appointments</Link>
+    <Link name="appoint" onClick={render} className={styles.link}>View And Edit Profile</Link>
     <Link name="medhistory" onClick={render} className={styles.link}>View Medical History</Link>
     <Link onClick={HandleLogout} className={styles.link} >Logout</Link>
 </div>

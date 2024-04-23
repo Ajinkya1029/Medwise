@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import styles from '../../css/profile.module.css';
 const url="http://localhost:1000/doctor/addpatients";
 function AddPatient(){
-    const [name,setName]=useState('');
+    const [name,setName]=useState("");
     function submit(e){
-        const token=localStorage.getItem('token');
-        e.preventDefault();
-        fetch(url,{
+        if(name!=null){
+            alert("Empty Field");
+        }else{
+
+            const token=localStorage.getItem('token');
+            e.preventDefault();
+            fetch(url,{
             method:'POST',
             body:JSON.stringify({name}),
             headers:{
@@ -16,11 +20,14 @@ function AddPatient(){
             }   
         }).then((res)=>res.json()).then((data)=>{
             if(data.success){
-                console.log("patient added");
+                alert(data.status);
+            }else{
+                alert(data.status);
             }
         }).catch((err)=>{
             console.log(err);
         });
+    }
     }
     return <div>
      {/* <form>
@@ -30,8 +37,9 @@ function AddPatient(){
      <form  className={styles.addpatient}>
 
      <h1>Register the patient</h1>
-     <input name="name" placeholder="Name"></input>
-     <input type="text" placeholder="Case"></input>
+     <input name="name" placeholder="Email" onChange={(e)=>setName(e.target.value)}></input>
+     {/* <input type="text" placeholder="Case"></input> */}
+     <button onClick={submit}>Submit</button>
      </form>
     </div>
 }

@@ -9,7 +9,7 @@ function SignupHandler({value,handleChange}) {
 
 
     function submit(e) {
-        e.preventDefault();
+        // e.preventDefault();
         fetch("http://localhost:1000/patient/register", {
             method: 'POST',
             body: JSON.stringify({ name, password, email}),
@@ -18,7 +18,8 @@ function SignupHandler({value,handleChange}) {
             }
         }).then((res) => res.json()).then((data) => {
             if (data.success) {
-                console.log("User registred");
+                alert("User Registered")
+
             }
             else{
                 alert(data.status);

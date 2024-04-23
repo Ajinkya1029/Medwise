@@ -1,25 +1,29 @@
 import React, {useState, useEffect } from "react";
 import styles from '../../css/admincomponent.module.css';
-function PatientList(){
-    const [patlist,setPatList]=useState([]);
 
-    useEffect(()=>{
+function PatientList(){
+    
+    const [patList,setPatList]=useState([]);
+    function fetchData(){
         const token=localStorage.getItem('token');
-        fetch('http://localhost:1000/admin/patientlist',{
+        fetch("http://localhost:1000/admin/patientlist",{
             method:"GET",
             headers:{
                 'Content-Type':"application/json",
                 "Accept":"application/json",
-                "Authorization":`${token}`
+                "Authorization":token
             }
         }).then(res=>res.json()).then(data=>{
             if(data.success){
-                console.log(data.list);
-                
-setPatList(data.list);
+                setPatList(data.list);
             }
         })
-    })
+    }
+    useEffect(()=>{
+        fetchData();
+    },[]);
+
+    
     return <table className={styles.patienttable}>
         <thead>
             <tr>
@@ -35,17 +39,17 @@ setPatList(data.list);
             </tr>
         </thead>
         <tbody>
-            {patlist.map((item,idx)=>(
-                <tr key={idx}>
-               <th>{item.name}</th>
-               <th>{item.dob}</th>
-               <th>{item.mobile}</th>
-               <th>{item.email}</th>
-               <th>{item.address}</th>
-               <th>{item.doctor}</th>
-        
-            </tr>
-            ))}
+        {patList.length!==0?patList.map((item,idx)=>(
+
+<tr className={styles.patientlist} key={idx}>
+<td>{item.name}</td>
+<td>{item.dob}</td>
+<td>{item.mobile}</td>
+<td>{item.email}</td>
+<td>{item.address}</td>
+<td>{item.doctor.map((item,idx)=>(<p>{item.name}</p>))}</td>
+</tr>
+        )):<div>No Data</div>}
             
         </tbody>
     </table>

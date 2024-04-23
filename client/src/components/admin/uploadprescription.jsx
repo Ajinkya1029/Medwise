@@ -28,7 +28,7 @@ function UploadPrescription(){
     const [selectedFile,setSelectedFile]=useState(null);
     return <div>
         <form className={styles.uploadform}>
-        <h1>Upload data</h1>
+        <h1>Upload Prescription</h1>
         <input type="text" placeholder="Patient name" onChange={(e)=>setName(e.target.value)}></input>
         <input type="file" onChange={(e)=>{setSelectedFile(e.target.files[0])}}></input>
         <button type="submit" style={{backgroundColor:"black"}} onClick={upload}>Submit</button>

@@ -45,7 +45,7 @@ function DoctorDashBoard(props){
     return <>
     <div className={styles.tab}>
 <Link name="vpatient" onClick={render}className={styles.link}>View Patient</Link>
-<Link name="appoint"  onClick={render}className={styles.link}>View Appointments</Link>
+{/* <Link name="appoint"  onClick={render}className={styles.link}>View Appointments</Link> */}
 <Link name="addpatient" onClick={(e)=>{render(e);getData()}} className={styles.link}>Add Patients</Link>
 <Link className={styles.link} onClick={HandleLogout}>Logout</Link>
     </div>

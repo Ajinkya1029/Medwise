@@ -5,12 +5,17 @@ function AddDoctor(){
     const [name,setName]=useState("");
     const [password,setPassword]=useState("");
     const [category,setCategory]=useState("");
+    const [email,setEmail]=useState("");
+    
    function submit(e){
+    if(!name||!password||!category||!email){
+        alert("Field cannot be empty");
+    }
     e.preventDefault();
     const token=localStorage.getItem("token");
     fetch("http://localhost:1000/admin/register",{
         method:"POST",
-        body:JSON.stringify({name,password,category}),
+        body:JSON.stringify({name,password,category,email}),
         headers:{
             "Content-Type":"application/json",
             Accept:"application/json",
@@ -19,9 +24,10 @@ function AddDoctor(){
         
     }).then(res=>res.json()).then((data)=>{
         if(data.success){
-            console.log("Doctor added")
+            alert("Doctor Registered")
+            console.log(data.status)
         }else {
-            console.log("Failed")
+            console.log(data.status)
         }
     })
    }
@@ -30,8 +36,9 @@ function AddDoctor(){
 <form className={styles.adddoctorform}>
 
     <input name="name" placeholder="Name" onChange={(e)=>setName(e.target.value)}></input>
-    <input name="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}></input>
+    <input name="password" placeholder="Password" type="password" onChange={(e)=>setPassword(e.target.value)}></input>
     <input name="category" placeholder="Category" onChange={(e)=>setCategory(e.target.value)}></input>
+    <input name="email" placeholder="Email" onChange={(e)=>setEmail(e.target.value)}></input>
     <button type="submit" onClick={submit}>Submit</button>
 </form>
 

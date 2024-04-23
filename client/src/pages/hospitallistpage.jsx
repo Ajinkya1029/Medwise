@@ -24,10 +24,16 @@ id=id.toLowerCase()
         body:JSON.stringify({id}),
     }).then((res)=>res.json()).then((data)=>{
         if(data.success){
-            console.log(data.List);
-setHospitalList(data.List);
+            
+            if(data.List.length==0){
+                setHospitalList(null)
+           
+            }else{
+                console.log(data.List);
+        setHospitalList(data.List);
          
         }
+    }
     })
 }
 function getData(event){
@@ -78,10 +84,10 @@ e.preventDefault();
 return <div className={styles.bdy}>
 <Navbar id={name} ></Navbar>
 <div className={styles.hospitallist}>
-    <div className={styles.search}>
+    {/* <div className={styles.search}>
 <h2>Search hospital by name</h2>
 <form ><input onChange={(e)=>setSearch(e.target.value)}></input><button onClick={searchByName}>Submit</button></form>
-        </div>
+        </div> */}
 <div className={styles.hlist}>
 {hospitalList!=null?<div>{hospitalList.map((item,idx)=>(
     <HCard key={idx} name={item.name} address={item.address} mobile={item.mobile} city={item.city}></HCard>
