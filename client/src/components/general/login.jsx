@@ -29,7 +29,7 @@ navigate('/');
     return <div className={styles.register}>
     <div className={styles.heading}><h3>Join Medwise</h3><Link onClick={(e)=>handleChange(false)} style={{textDecoration:'none',color:'gray'}}>New to Medwise? </Link></div> 
     <form className={styles.form}>
-      <div className={styles.field}>  <label>Email</label><input type="text" name="name" placeholder="email" onChange={(e)=>setName(e.target.value)} /></div>
+      <div className={styles.field}>  <label>Email</label><input type="email" name="name" placeholder="email" onChange={(e)=>setName(e.target.value)} /></div>
         <div className={styles.field}>
         
         <div className={styles.field}>

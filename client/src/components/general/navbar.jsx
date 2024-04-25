@@ -36,8 +36,8 @@ if(data){
 <button onClick={search} >Search</button>
 </div>
 <ul className={styles.rightNavbar}>
-    <Link className={styles.link}>Support</Link>
-    <Link className={styles.link}>About us</Link>
+    <Link to='/support'  className={styles.link}>Support</Link>
+    <Link   to='/aboutus' className={styles.link}>About us</Link>
  <Link className={styles.link} to={props.id?'/profile':"/login"}>{props.id?`Welcome ${props.id}`:"Login"}</Link>
 </ul>
     </div>

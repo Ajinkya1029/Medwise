@@ -101,5 +101,19 @@ router.get('/patientlist',authenticate,async(req,res)=>{
         res.status(400).json({success:false,status:err});
     })
 })
+router.get('/doctorlist',authenticate,async(req,res)=>{
+    const hospital=req.user.hospital;
+    
+    await Doctor.find({hospital:{$elemMatch:{$eq:hospital}}}).then(pt=>{
+        console.log(pt);
+        if(!pt){
+            res.status(200).json({success:true,status:"No Patient Found"});
+        }else{
+            res.status(200).json({success:true,status:"OK","list":pt});
+        }
+    }).catch(err=>{
+        res.status(400).json({success:false,status:err});
+    })
+})
 module.exports=router;
 

@@ -7,6 +7,7 @@ import UploadMedicalHistory from "./uploadmedicalhistory";
 import UploadPrescription from "./uploadprescription";
 import UploadPatient from "./uploadpatient";
 import PatientList from "./patientlist";
+import DoctorList from "./doctorlist";
 
 function AdminDashBoard(){
  
@@ -23,6 +24,8 @@ if(event.target.name==="adddoctor"){
     setComponent();
 }else if(event.target.name==="patlist"){
     setComponent(<PatientList/>);
+}else if(event.target.name==='doclist'){
+    setComponent(<DoctorList/>)
 }
 else{
     setComponent(<UploadPatient></UploadPatient>);
@@ -42,6 +45,7 @@ else{
 
    
    <Link name="patlist" className={styles.link} onClick={handler}>Patient List</Link>
+   <Link name="doclist" className={styles.link} onClick={handler}>Doctor List</Link>
    <Link onClick={HandleLogout} className={styles.link} >Logout</Link>
    </div>
    <div className={styles.feature}>

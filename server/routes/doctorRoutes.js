@@ -61,10 +61,22 @@ router.get('/patlist',authenticate,async(req,res)=>{
  try{
     const list=await Doctor.findOne({_id:doc}).populate('patient');
     
-    res.status(200).json({success:true,"List":list.patient});
+    res.status(200).json({success:true,"List":list.patient,'self':list});
  }catch(err){
     res.status(400).json({success:false,status:err});
  }
 });
+
+ router.put('/update',authenticate,async(req,res)=>{
+     const _id=req.user._id;
+  
+    const {name,email,mobile}=req.body;
+    await Doctor.findByIdAndUpdate(_id,{name:name,email:email,mobile:mobile},{new:false,useFindAndModify:true}).then(dc=>{
+        res.status(200).json({success:true,status:"Details Updated"});
+    }).catch(err=>{
+        res.status(400).json({success:false,status:{err}});
+    })
+ })
+
 
 module.exports=router;

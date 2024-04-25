@@ -1,0 +1,13 @@
+.bdy{
+    height: 100vh;
+    /* overflow: scroll; */
+    background-image: url('../resources/background1.png');
+    background-size: 1550px ;
+    background-repeat:repeat;
+  }
+  .aboutus{
+    width: 50%;
+    /* background-color: white; */
+    margin-top: 5%;
+    margin-left: 20%;
+  }

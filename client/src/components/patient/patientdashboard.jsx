@@ -10,6 +10,7 @@ function PatientDashBoard(props){
     const [component,setComponent]=useState(null);
     const [list,setList]=useState([]);
     const [patData,setPatData]=useState([]);
+
     const navigate=useNavigate();
     function getData(){
         const token=localStorage.getItem('token');
