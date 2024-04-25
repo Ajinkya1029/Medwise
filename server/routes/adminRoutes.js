@@ -55,9 +55,12 @@ router.get('/hpat',authenticate,async(req,res)=>{
 
 router.post('/register',authenticate,async(req,res)=>{
     // According to admin hospital add the doctor hospital 
-    const {name,password,category}=req.body;
+    const hospital=req.user.hospital;
+    const {name,password,category,email}=req.body;
+  
     
-    const newDoctor=new Doctor({name:name,password:password,category:category,roles:"doctor"});
+    const newDoctor=new Doctor({name:name,password:password,category:category,roles:"doctor",email:email});
+    newDoctor.hospital.push(hospital);
     newDoctor.save().then(dc=>{
         res.status(200).json({success:true,status:"Doctor Registered"});
     }).catch(err=>{
@@ -86,7 +89,23 @@ router.delete('/doctor/:dId',authenticate,async(req,res)=>{
 })
 router.get('/patientlist',authenticate,async(req,res)=>{
     const hospital=req.user.hospital;
-    await Patient.find({hospital:hospital}).populate('doctor').then(pt=>{
+    
+    await Patient.find({hospital:{$elemMatch:{$eq:hospital}}}).populate('doctor').then(pt=>{
+        console.log(pt);
+        if(!pt){
+            res.status(200).json({success:true,status:"No Patient Found"});
+        }else{
+            res.status(200).json({success:true,status:"OK","list":pt});
+        }
+    }).catch(err=>{
+        res.status(400).json({success:false,status:err});
+    })
+})
+router.get('/doctorlist',authenticate,async(req,res)=>{
+    const hospital=req.user.hospital;
+    
+    await Doctor.find({hospital:{$elemMatch:{$eq:hospital}}}).then(pt=>{
+        console.log(pt);
         if(!pt){
             res.status(200).json({success:true,status:"No Patient Found"});
         }else{

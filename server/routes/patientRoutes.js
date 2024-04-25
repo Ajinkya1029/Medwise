@@ -25,7 +25,7 @@ router.get('/patientsdoctor',authenticate,async (req,res)=>{
     const name=req.user.name;
    try{
     const list=await Patient.findOne({name:name}).populate('doctor');
-    res.status(200).json({success:true,"List":list.doctor});
+    res.status(200).json({success:true,"List":list.doctor,"pat":list});
    }catch(err){
     res.status(400).json({success:true});
    }
@@ -51,5 +51,15 @@ router.post('/register', async (req, res) => {
       
     
 });
+router.put('/update',authenticate,async (req,res)=>{
+const _id=req.user._id;
+console.log(_id);
+const {name,email,mobile,dob,address}=req.body;
+await Patient.findByIdAndUpdate(_id,{email:email,name:name,mobile:mobile,address:address},{new:false,useFindAndModify:true}).then(pt=>{
+    res.status(200).json({success:true,status:"Updated"});
+})
+
+});
 
 module.exports=router;
+

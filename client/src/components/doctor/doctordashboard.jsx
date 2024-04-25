@@ -4,11 +4,13 @@ import {useNavigate} from 'react-router';
 import AddPatient from "./addpatient";
 import styles from '../../css/profile.module.css';
 import AssociatedPatient from "./associatedpatient";
+import UpdateDoctor from "./updatedocdata";
 
 function DoctorDashBoard(props){
     
     const [list,setList]=useState([]);
     const [component,setComponent]=useState(null);
+    const [data,setData]=useState([]);
     const navigate=useNavigate();
     function getData(){
         const token=localStorage.getItem('token');
@@ -21,8 +23,9 @@ function DoctorDashBoard(props){
             }
         }).then(res=>res.json()).then((data)=>{
             if(data.success){
-                console.log(data.List);
+                setData(data.self)
                 setList(data.List);
+              
             }
         });
     }
@@ -34,7 +37,7 @@ function DoctorDashBoard(props){
             if(e.target.name==="vpatient"){
                 setComponent(<AssociatedPatient list={list}></AssociatedPatient>)
             }else if(e.target.name==="appoint"){
-                setComponent();
+                setComponent(<UpdateDoctor list={data}/>);
             }else if(e.target.name==="addpatient"){
                 setComponent(<AddPatient></AddPatient>);
             }
@@ -45,7 +48,7 @@ function DoctorDashBoard(props){
     return <>
     <div className={styles.tab}>
 <Link name="vpatient" onClick={render}className={styles.link}>View Patient</Link>
-<Link name="appoint"  onClick={render}className={styles.link}>View Appointments</Link>
+<Link name="appoint"  onClick={render}className={styles.link}>Update And View</Link>
 <Link name="addpatient" onClick={(e)=>{render(e);getData()}} className={styles.link}>Add Patients</Link>
 <Link className={styles.link} onClick={HandleLogout}>Logout</Link>
     </div>

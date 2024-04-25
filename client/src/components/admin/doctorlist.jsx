@@ -1,12 +1,12 @@
 import React, {useState, useEffect } from "react";
 import styles from '../../css/admincomponent.module.css';
 
-function PatientList(){
+function DoctorList(){
     
     const [patList,setPatList]=useState([]);
     function fetchData(){
         const token=localStorage.getItem('token');
-        fetch("http://localhost:1000/admin/patientlist",{
+        fetch("http://localhost:1000/admin/doctorlist",{
             method:"GET",
             headers:{
                 'Content-Type':"application/json",
@@ -27,12 +27,11 @@ function PatientList(){
     return <table className={styles.patienttable}>
         <thead>
             <tr>
-                <th>Patient Name</th>
+                <th>Doctor Name</th>
                 <th>Dob</th>
                 <th>Mobile</th>
                 <th>Email</th>
-                <th>Address</th>
-                <th>Doctors</th>
+                
                 
                
 
@@ -46,8 +45,8 @@ function PatientList(){
 <td>{item.dob}</td>
 <td>{item.mobile}</td>
 <td>{item.email}</td>
-<td>{item.address}</td>
-<td>{item.doctor.map((item,idx)=>(<p>{item.name}</p>))}</td>
+
+
 </tr>
         )):<div>No Data</div>}
             
@@ -55,4 +54,4 @@ function PatientList(){
     </table>
     
 }
-export default PatientList;
+export default DoctorList;

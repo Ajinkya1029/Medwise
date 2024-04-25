@@ -1,0 +1,53 @@
+.card{
+    padding: 1%;
+
+margin-left: 15%;
+margin-top: 5%;
+    width: 40%;
+     box-shadow: 0 0 10px gray;
+     border-radius: 1%;
+    height: 40vh;
+        display: flex;
+    gap: 6%;
+    background-color:#9db7cc;
+    }
+    .imagediv{
+        width: 150px;
+        height: 150px;
+       
+        
+    }
+    .imagediv img{
+        border-radius: 50%;
+        width: 150px;
+        background-color: #0A83E8;
+    }
+    .carddetail{
+        width: 80%;
+    }
+    .carddetail input{
+        /* background-color:#ccdeee; */
+        border: none;
+        width: 50%;
+        padding: 1%;
+        margin-top: 1%;
+        display:flex;
+        
+    }
+    .carddetail{
+        display:flex;
+        gap: 5%;
+    }
+    .carddetail button{
+        border :none;
+    }
+  .labels h3{
+    margin-bottom: 20%;
+    }
+    .inputs{
+   
+        width: 90%;
+    }
+    .inputs input{
+        margin-bottom: 3%;
+    }

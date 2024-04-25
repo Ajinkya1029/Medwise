@@ -11,7 +11,7 @@ const hospitalSchema=mongoose.Schema({
         type:Schema.ObjectId,
         ref:'Doctor'
     }],
-    Patient:[{
+    patient:[{
         type:Schema.ObjectId,
         ref:'Patient'
     }],
